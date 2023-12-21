@@ -8,7 +8,8 @@ import 'package:quickstart_flutter_plugin/page_camera.dart';
 import 'package:quickstart_flutter_plugin/page_image.dart';
 import 'package:quickstart_flutter_plugin/page_touchup.dart';
 
-const banubaToken = <#"Place Token here"#>
+const banubaToken =
+    "LmMsBaYyQeWEiFWEPBefzDRKfl6KoEI4M7W1GH3HmBnIrkvZ5UFkfyXBArfdDPJ+ruILLhDjOrIbQji4RQLoFqZ6zIvTZOOVAcdrM/qGgzdNiv1jLHq12mexlUOOm7mxDBeuccYFsN5AggiYDzhEQAD42AxMTvFOvMP+3tmO8h9yOzUbFjK4AlOFL0jWE703NrxoOfEs6IeJL43g1izOMVJ6KlD8GLy+WUPWyyvS/h69HKk9gtmpOcQFtoxZp2Pp2Hs/r+Id2/7WwqUx4N3+g75l5B1UwBsQv73upPFHmlNIbz7z/KJuSpNu5T+g26UlChfzQLzs3XEC96zTNXD7I/tIkZSHnBBWdnBLjTP8kDB+f1kG0WmkhUoP1opxJ0okBsAUqEf3y2XcnZvaMTQcK7co6qLwR46GBBFWieIVMfo/jBV/iUaAyLDFbAs6B8+ed0LO+7FCEeHhM5omyQ1/xZTzqmRg4curzydcKOgg4B30vXFrWGOWJXl6yrJR6z5GED1CG9ckvwTxQrPExACNavOCNEouLQYGdcdrDD6wAlm8VJiX5Fuq4S3A7FHI6EpCX/0r4CbA60eVbMbhLDYIj31VOMwiMtqlTSVCHPpgw/n/";
 
 enum EntryPage { camera, image, touchUp }
 
@@ -120,14 +121,9 @@ Future<bool> requestPermissions() async {
 List<Permission> _getPlatformPermissions() {
   if (Platform.isAndroid) {
     // Implement check version flow on your side
-    final versionHigher11 = true;
-    if (versionHigher11) {
-      return [Permission.camera, Permission.microphone, Permission.manageExternalStorage];
-    } else {
-      return [Permission.camera, Permission.microphone, Permission.storage];
-    }
+    return [Permission.camera, Permission.microphone, Permission.storage];
   } else if (Platform.isIOS) {
-    return [Permission.camera, Permission.microphone];
+    return [Permission.camera, Permission.microphone, Permission.storage];
   } else {
     throw Exception('Platform is not supported!');
   }

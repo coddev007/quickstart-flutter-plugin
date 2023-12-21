@@ -19,6 +19,7 @@ class _TouchUpPageState extends State<TouchUpPage> with WidgetsBindingObserver {
   final BanubaSdkManager _banubaSdkManager = BanubaSdkManager();
   final _epWidget = EffectPlayerWidget(key: null);
 
+//! List of Features
   final List<Feature> _features = <Feature>[
     /// Main
     Feature(
@@ -26,15 +27,14 @@ class _TouchUpPageState extends State<TouchUpPage> with WidgetsBindingObserver {
         progressValue: 0.0,
         min: 0,
         max: 100.0,
-        processor: (double progress) => ['Skin.softening($progress)']
-    ),
+        processor: (double progress) => ['Skin.softening($progress)']),
     Feature(
         name: 'Eyes',
         progressValue: 0.0,
         min: -100.0,
         max: 100.0,
-        processor: (double progress) => ['FaceMorph.eyes({enlargement: $progress})']
-    ),
+        processor: (double progress) =>
+            ['FaceMorph.eyes({enlargement: $progress})']),
     Feature(
         name: 'Nose',
         progressValue: 0.0,
@@ -45,59 +45,55 @@ class _TouchUpPageState extends State<TouchUpPage> with WidgetsBindingObserver {
           final l = 1.0 * progress;
           final tw = -1.0 * progress;
           return ['FaceMorph.nose({width: $w, length: $l, tip_width: $tw})'];
-        }
-    ),
+        }),
     Feature(
         name: 'Lip Size',
         progressValue: 0.0,
         min: -100.0,
         max: 100.0,
-        processor: (double progress) => ['FaceMorph.lips({size: $progress})']
-    ),
+        processor: (double progress) => ['FaceMorph.lips({size: $progress})']),
     Feature(
         name: 'Lip Shape',
         progressValue: 0.0,
         min: -100.0,
         max: 100.0,
-        processor: (double progress) => ['aceMorph.lips({shape: 1.0, thickness: $progress})']
-    ),
+        processor: (double progress) =>
+            ['aceMorph.lips({shape: 1.0, thickness: $progress})']),
     Feature(
         name: 'Face Width',
         progressValue: 0.0,
         min: -100.0,
         max: 100.0,
-        processor: (double progress) => ['FaceMorph.face({narrowing: $progress})']
-    ),
+        processor: (double progress) =>
+            ['FaceMorph.face({narrowing: $progress})']),
     Feature(
         name: 'Cheeckbones',
         progressValue: 0.0,
         min: -100.0,
         max: 100.0,
-        processor: (double progress) => ['FaceMorph.face({cheekbones_narrowing: $progress})']
-    ),
+        processor: (double progress) =>
+            ['FaceMorph.face({cheekbones_narrowing: $progress})']),
     Feature(
         name: 'Chin',
         progressValue: 0.0,
         min: 0,
         max: 100.0,
         processor: (double progress) => [
-          'FaceMesh.chin_jaw_shortening($progress)',
-          'FaceMorph.face({jaw_narrowing: 1.0, chin_narrowing: 1.0})'
-        ]),
+              'FaceMesh.chin_jaw_shortening($progress)',
+              'FaceMorph.face({jaw_narrowing: 1.0, chin_narrowing: 1.0})'
+            ]),
     Feature(
         name: 'Brightening',
         progressValue: 0.0,
         min: 0,
         max: 100.0,
-        processor: (double progress) => ['Eyes.whitening($progress)']
-    ),
+        processor: (double progress) => ['Eyes.whitening($progress)']),
     Feature(
         name: 'Whitening',
         progressValue: 0.0,
         min: 0,
         max: 100.0,
-        processor: (double progress) => ['Teeth.whitening($progress)']
-    ),
+        processor: (double progress) => ['Teeth.whitening($progress)']),
 
     /// Additional
     Feature(
@@ -105,14 +101,16 @@ class _TouchUpPageState extends State<TouchUpPage> with WidgetsBindingObserver {
       progressValue: 0.0,
       min: -100.0,
       max: 100.0,
-      processor: (double progress) => ['FaceMorph.eyebrows({spacing: $progress})'],
+      processor: (double progress) =>
+          ['FaceMorph.eyebrows({spacing: $progress})'],
     ),
     Feature(
       name: 'Brow Height',
       progressValue: 0.0,
       min: -100.0,
       max: 100.0,
-      processor: (double progress) => ['FaceMorph.eyebrows({height: $progress})'],
+      processor: (double progress) =>
+          ['FaceMorph.eyebrows({height: $progress})'],
     ),
     Feature(
       name: 'Brow Bend',
@@ -154,14 +152,16 @@ class _TouchUpPageState extends State<TouchUpPage> with WidgetsBindingObserver {
       progressValue: 0.0,
       min: -100.0,
       max: 100.0,
-      processor: (double progress) => ['FaceMorph.eyes({upper_eyelid_pos: $progress})'],
+      processor: (double progress) =>
+          ['FaceMorph.eyes({upper_eyelid_pos: $progress})'],
     ),
     Feature(
       name: 'Lower eyelid',
       progressValue: 0.0,
       min: -100.0,
       max: 100.0,
-      processor: (double progress) => ['FaceMorph.eyes({lower_eyelid_pos: $progress})'],
+      processor: (double progress) =>
+          ['FaceMorph.eyes({lower_eyelid_pos: $progress})'],
     ),
     Feature(
       name: 'Nose Upper Size',
@@ -182,7 +182,8 @@ class _TouchUpPageState extends State<TouchUpPage> with WidgetsBindingObserver {
       progressValue: 0.0,
       min: -100.0,
       max: 100.0,
-      processor: (double progress) => ['FaceMorph.nose({tip_width: $progress})'],
+      processor: (double progress) =>
+          ['FaceMorph.nose({tip_width: $progress})'],
     ),
     Feature(
       name: 'Mouth position',
@@ -196,14 +197,16 @@ class _TouchUpPageState extends State<TouchUpPage> with WidgetsBindingObserver {
       progressValue: 0.0,
       min: -100.0,
       max: 100.0,
-      processor: (double progress) => ['FaceMorph.lips({thickness: $progress})'],
+      processor: (double progress) =>
+          ['FaceMorph.lips({thickness: $progress})'],
     ),
     Feature(
       name: 'Mouth Width',
       progressValue: 0.0,
       min: -100.0,
       max: 100.0,
-      processor: (double progress) => ['FaceMorph.lips({mouth_size: $progress})'],
+      processor: (double progress) =>
+          ['FaceMorph.lips({mouth_size: $progress})'],
     ),
     Feature(
       name: 'Smile',
@@ -217,7 +220,8 @@ class _TouchUpPageState extends State<TouchUpPage> with WidgetsBindingObserver {
       progressValue: 0.0,
       min: -100.0,
       max: 100.0,
-      processor: (double progress) => ['FaceMorph.lips({shape: $progress, thickness: 1.0})'],
+      processor: (double progress) =>
+          ['FaceMorph.lips({shape: $progress, thickness: 1.0})'],
     ),
     Feature(
       name: 'Face V-Shape',
@@ -231,42 +235,48 @@ class _TouchUpPageState extends State<TouchUpPage> with WidgetsBindingObserver {
       progressValue: 0.0,
       min: -100.0,
       max: 100.0,
-      processor: (double progress) => ['FaceMorph.face({cheeks_narrowing: $progress})'],
+      processor: (double progress) =>
+          ['FaceMorph.face({cheeks_narrowing: $progress})'],
     ),
     Feature(
       name: 'Jaw Width',
       progressValue: 0.0,
       min: -100.0,
       max: 100.0,
-      processor: (double progress) => ['FaceMorph.face({jaw_narrowing: $progress})'],
+      processor: (double progress) =>
+          ['FaceMorph.face({jaw_narrowing: $progress})'],
     ),
     Feature(
       name: 'Chin Length',
       progressValue: 0.0,
       min: -100.0,
       max: 100.0,
-      processor: (double progress) => ['FaceMorph.face({chin_shortening: $progress})'],
+      processor: (double progress) =>
+          ['FaceMorph.face({chin_shortening: $progress})'],
     ),
     Feature(
       name: 'Chin Width',
       progressValue: 0.0,
       min: -100.0,
       max: 100.0,
-      processor: (double progress) => ['FaceMorph.face({chin_narrowing: $progress})'],
+      processor: (double progress) =>
+          ['FaceMorph.face({chin_narrowing: $progress})'],
     ),
     Feature(
       name: 'Cheek Sunken',
       progressValue: 0.0,
       min: 0.0,
       max: 100.0,
-      processor: (double progress) => ['FaceMorph.face({sunken_cheeks: $progress})'],
+      processor: (double progress) =>
+          ['FaceMorph.face({sunken_cheeks: $progress})'],
     ),
     Feature(
       name: 'Сheeks & Jaw width',
       progressValue: 0.0,
       min: -100.0,
       max: 100.0,
-      processor: (double progress) => ['FaceMorph.face({cheeks_jaw_narrowing: $progress})'],
+      processor: (double progress) =>
+          ['FaceMorph.face({cheeks_jaw_narrowing: $progress})'],
     ),
   ];
 
@@ -283,7 +293,8 @@ class _TouchUpPageState extends State<TouchUpPage> with WidgetsBindingObserver {
         debugPrint('TouchUpPage: Thanks! All permissions are granted!');
         openCamera();
       } else {
-        debugPrint('TouchUpPage: WARNING! Not all required permissions are granted!');
+        debugPrint(
+            'TouchUpPage: WARNING! Not all required permissions are granted!');
         // Plugin cannot be used. Handle this state on your app side
         SystemNavigator.pop();
       }
@@ -332,43 +343,48 @@ class _TouchUpPageState extends State<TouchUpPage> with WidgetsBindingObserver {
     final screenSize = MediaQuery.of(context).size;
     return Material(
         child: Stack(
-          children: [
-            SizedBox(width: screenSize.width, height: screenSize.height, child: _epWidget),
-            Container(
-                alignment: Alignment.bottomLeft,
-                child: Container(
-                  height: screenSize.height * 0.33,
-                  child: ListView.builder(
-                      padding: const EdgeInsets.fromLTRB(16, 4, 16, 4),
-                      itemCount: _features.length,
-                      itemBuilder: (BuildContext context, int index) =>
-                          _buildFeatureItem(_features[index], (index + 1))),
-                ))
-          ],
-        ));
+      children: [
+        SizedBox(
+            width: screenSize.width,
+            height: screenSize.height,
+            child: _epWidget),
+        Container(
+            alignment: Alignment.bottomLeft,
+            child: SizedBox(
+              height: screenSize.height * 0.33,
+              child: ListView.builder(
+                  padding: const EdgeInsets.fromLTRB(16, 4, 16, 4),
+                  itemCount: _features.length,
+                  itemBuilder: (BuildContext context, int index) =>
+                      _buildFeatureItem(_features[index], (index + 1))),
+            ))
+      ],
+    ));
   }
 
   Widget _buildFeatureItem(Feature feature, int index) => Row(
-    children: [
-      Text(
-        '$index. ${feature.name.toUpperCase()}',
-        style: const TextStyle(
-            fontSize: 10.0, color: Colors.greenAccent, fontWeight: FontWeight.bold),
-      ),
-      Slider(
-        min: feature.min,
-        value: feature.progressValue,
-        max: feature.max,
-        label: "",
-        onChanged: (double value) {
-          setState(() {
-            feature.progressValue = value;
-            _applyBeautyChanges(feature.processor(value / 100));
-          });
-        },
-      )
-    ],
-  );
+        children: [
+          Text(
+            '$index. ${feature.name.toUpperCase()}',
+            style: const TextStyle(
+                fontSize: 10.0,
+                color: Colors.greenAccent,
+                fontWeight: FontWeight.bold),
+          ),
+          Slider(
+            min: feature.min,
+            value: feature.progressValue,
+            max: feature.max,
+            label: "",
+            onChanged: (double value) {
+              setState(() {
+                feature.progressValue = value;
+                _applyBeautyChanges(feature.processor(value / 100));
+              });
+            },
+          )
+        ],
+      );
 
   void _applyBeautyChanges(List<String> changes) async {
     for (var element in changes) {
@@ -387,8 +403,8 @@ class Feature {
 
   Feature(
       {required this.name,
-        required this.progressValue,
-        required this.processor,
-        required this.min,
-        required this.max});
+      required this.progressValue,
+      required this.processor,
+      required this.min,
+      required this.max});
 }

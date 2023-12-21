@@ -70,7 +70,9 @@ class _ImagePageState extends State<ImagePage> with WidgetsBindingObserver {
 
     setState(() {});
 
-    _banubaSdkManager.processImage(_pickedImageFile!.path, destFilePath).then((value) {
+    _banubaSdkManager
+        .processImage(_pickedImageFile!.path, destFilePath)
+        .then((value) {
       debugPrint('ImagePage: image processed successfully!');
       _processedImageFilePath = destFilePath;
       _isProcessing = false;
@@ -101,21 +103,22 @@ class _ImagePageState extends State<ImagePage> with WidgetsBindingObserver {
     final screenSize = MediaQuery.of(context).size;
     final File? imageFile = findStateFile();
 
-    debugPrint('ImagePage: build: isProcessing = $_isProcessing, imageFile = $imageFile');
+    debugPrint(
+        'ImagePage: build: isProcessing = $_isProcessing, imageFile = $imageFile');
 
     return Stack(children: [
       imageFile == null
           ? const Text('Pick image from gallery',
-          style: TextStyle(
-            fontSize: 10.0,
-          ))
+              style: TextStyle(
+                fontSize: 10.0,
+              ))
           : Image.file(
-        File(imageFile.path),
-        fit: BoxFit.cover,
-        height: double.infinity,
-        width: double.infinity,
-        alignment: Alignment.center,
-      ),
+              File(imageFile.path),
+              fit: BoxFit.cover,
+              height: double.infinity,
+              width: double.infinity,
+              alignment: Alignment.center,
+            ),
       Positioned(
           bottom: screenSize.height * 0.03,
           left: screenSize.width * 0.05,

@@ -49,7 +49,8 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
         debugPrint('CameraPage: Thanks! All permissions are granted!');
         openCamera();
       } else {
-        debugPrint('CameraPage: WARNING! Not all required permissions are granted!');
+        debugPrint(
+            'CameraPage: WARNING! Not all required permissions are granted!');
         // Plugin cannot be used. Handle this state on your app side
         SystemNavigator.pop();
       }
@@ -99,6 +100,7 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
     if (_applyEffect) {
       // Applies Face AR effect
       _banubaSdkManager.loadEffect('effects/TrollGrandma');
+      // _banubaSdkManager.loadEffect('effects/ArabicNight');
     } else {
       // Discard Face AR effect
       _banubaSdkManager.loadEffect('');
@@ -115,9 +117,13 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
       debugPrint('CameraPage: startVideoRecording = $filePath');
       _isVideoRecording = true;
       _banubaSdkManager
-          .startVideoRecording(filePath, _captureAudioInVideoRecording,
-          _videoResolutionHD.width.toInt(), _videoResolutionHD.height.toInt())
-          .then((value) => debugPrint('CameraPage: Video recorded successfully'));
+          .startVideoRecording(
+              filePath,
+              _captureAudioInVideoRecording,
+              _videoResolutionHD.width.toInt(),
+              _videoResolutionHD.height.toInt())
+          .then(
+              (value) => debugPrint('CameraPage: Video recorded successfully'));
     }
   }
 
@@ -125,10 +131,11 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
     final photoFilePath = await generateFilePath('image_', '.png');
     debugPrint('CameraPage: Take photo = $photoFilePath');
     _banubaSdkManager
-        .takePhoto(
-        photoFilePath, _videoResolutionHD.width.toInt(), _videoResolutionHD.height.toInt())
+        .takePhoto(photoFilePath, _videoResolutionHD.width.toInt(),
+            _videoResolutionHD.height.toInt())
         .then((value) => debugPrint('CameraPage: Photo taken successfully'))
-        .onError((error, stackTrace) => debugPrint('CameraPage: Error while taking photo'));
+        .onError((error, stackTrace) =>
+            debugPrint('CameraPage: Error while taking photo'));
   }
 
   @override
@@ -137,7 +144,10 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
     final screenSize = MediaQuery.of(context).size;
     return Stack(
       children: [
-        SizedBox(width: screenSize.width, height: screenSize.height, child: _epWidget),
+        SizedBox(
+            width: screenSize.width,
+            height: screenSize.height,
+            child: _epWidget),
         Positioned(
             top: screenSize.height * 0.6,
             left: screenSize.width * 0.05,
@@ -221,7 +231,8 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
                   style: ElevatedButton.styleFrom(
                     shape: const StadiumBorder(),
                     fixedSize: const Size(120, 40),
-                    backgroundColor: _isVideoRecording ? Colors.red : Colors.green,
+                    backgroundColor:
+                        _isVideoRecording ? Colors.red : Colors.green,
                   ),
                   onPressed: () {
                     setState(() {
@@ -229,7 +240,9 @@ class _CameraPageState extends State<CameraPage> with WidgetsBindingObserver {
                     });
                   },
                   child: Text(
-                    _isVideoRecording ? 'Stop'.toUpperCase() : 'Record Video'.toUpperCase(),
+                    _isVideoRecording
+                        ? 'Stop'.toUpperCase()
+                        : 'Record Video'.toUpperCase(),
                     style: const TextStyle(
                       fontSize: 10.0,
                     ),
